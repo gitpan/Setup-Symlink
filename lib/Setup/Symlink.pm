@@ -1,6 +1,6 @@
 package Setup::Symlink;
 BEGIN {
-  $Setup::Symlink::VERSION = '0.01';
+  $Setup::Symlink::VERSION = '0.02';
 }
 # ABSTRACT: Setup symlink
 
@@ -166,7 +166,7 @@ Setup::Symlink - Setup symlink
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -176,7 +176,7 @@ version 0.01
  my $res = setup_symlink symlink => "/baz", target => "/qux";
  die unless $res->[0] == 200;
 
- # save undo info
+ # perform setup and save undo info (undo info should be serializable)
  my $res = setup_symlink symlink => "/foo", target => "/bar",
                          -undo_action => 'do';
  die unless $res->[0] == 200;
@@ -223,14 +223,20 @@ correct content/ownership/permission.
 
 None are exported by default, but they are exportable.
 
-=head2 setup_symlink(%args) -> [STATUSCODE, ERRMSG, RESULT]
+=head2 setup_symlink(%args) -> [STATUS_CODE, ERR_MSG, RESULT]
 
 
 Create symlink or fix symlink target.
 
-Returns a 3-element arrayref. STATUSCODE is 200 on success, or an error code
-between 3xx-5xx (just like in HTTP). ERRMSG is a string containing error
+Returns a 3-element arrayref. STATUS_CODE is 200 on success, or an error code
+between 3xx-5xx (just like in HTTP). ERR_MSG is a string containing error
 message, RESULT is the actual result.
+
+This function supports undo operation. See L<Sub::Spec::Clause::features> for
+details on how to perform do/undo/redo.
+
+This function supports dry-run (simulation) mode. To run in dry-run mode, add
+argument C<-dry_run> => 1.
 
 Arguments (C<*> denotes required arguments):
 

@@ -17,12 +17,14 @@ my %module_build_args = (
     'Steven Haryanto <stevenharyanto@gmail.com>'
   ],
   'dist_name' => 'Setup-Symlink',
-  'dist_version' => '0.01',
+  'dist_version' => '0.02',
   'license' => 'perl',
   'module_name' => 'Setup::Symlink',
   'recommends' => {},
   'recursive_test_files' => 1,
   'requires' => {
+    'File::chdir' => '0',
+    'Log::Any' => '0',
     'Test::More' => '0.96',
     'perl' => '5.010000'
   },
