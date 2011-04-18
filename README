@@ -2,24 +2,24 @@ NAME
     Setup::Symlink - Setup symlink
 
 VERSION
-    version 0.02
+    version 0.03
 
 SYNOPSIS
      use Setup::Symlink 'setup_symlink';
 
-     # simple usage (doesn't save undo info)
+     # simple usage (doesn't save undo data)
      my $res = setup_symlink symlink => "/baz", target => "/qux";
      die unless $res->[0] == 200;
 
-     # perform setup and save undo info (undo info should be serializable)
+     # perform setup and save undo data (undo data should be serializable)
      my $res = setup_symlink symlink => "/foo", target => "/bar",
                              -undo_action => 'do';
      die unless $res->[0] == 200;
-     my $undo_info = $res->[3]{undo_info};
+     my $undo_data = $res->[3]{undo_data};
 
      # perform undo
      my $res = setup_symlink symlink => "/symlink", target=>"/target",
-                             -undo_action => "undo", -undo_info=>$undo_info;
+                             -undo_action => "undo", -undo_data=>$undo_data;
      die unless $res->[0] == 200;
 
 DESCRIPTION
@@ -76,14 +76,14 @@ FUNCTIONS
 
         Symlink path needs to be absolute so it's normalized.
 
-    *   create => *bool* (default 1)
+    *   create* => *bool* (default 1)
 
         Create if symlink doesn't exist.
 
         If set to false, then setup will fail (412) if this condition is
         encountered.
 
-    *   replace_dir => *bool* (default 0)
+    *   replace_dir* => *bool* (default 0)
 
         Replace if there is existing dir.
 
@@ -92,7 +92,7 @@ FUNCTIONS
 
         NOTE: Not yet implemented, so will always fail under this condition.
 
-    *   replace_file => *bool* (default 0)
+    *   replace_file* => *bool* (default 0)
 
         Replace if there is existing non-symlink file.
 
@@ -101,7 +101,7 @@ FUNCTIONS
 
         NOTE: Not yet implemented, so will always fail under this condition.
 
-    *   replace_symlink => *bool* (default 1)
+    *   replace_symlink* => *bool* (default 1)
 
         Replace previous symlink if it already exists but doesn't point to
         the wanted target.
