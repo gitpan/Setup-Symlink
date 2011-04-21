@@ -1,8 +1,8 @@
 NAME
-    Setup::Symlink - Setup symlink
+    Setup::Symlink - Ensure symlink existence and target
 
 VERSION
-    version 0.03
+    version 0.04
 
 SYNOPSIS
      use Setup::Symlink 'setup_symlink';
@@ -23,7 +23,7 @@ SYNOPSIS
      die unless $res->[0] == 200;
 
 DESCRIPTION
-    This module provides one function setup_symlink to setup symlinks.
+    This module provides one function setup_symlink.
 
     This module is part of the Setup modules family.
 

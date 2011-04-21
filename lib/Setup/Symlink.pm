@@ -1,8 +1,8 @@
 package Setup::Symlink;
 BEGIN {
-  $Setup::Symlink::VERSION = '0.03';
+  $Setup::Symlink::VERSION = '0.04';
 }
-# ABSTRACT: Setup symlink
+# ABSTRACT: Ensure symlink existence and target
 
 use 5.010;
 use strict;
@@ -162,11 +162,11 @@ sub setup_symlink {
 
 =head1 NAME
 
-Setup::Symlink - Setup symlink
+Setup::Symlink - Ensure symlink existence and target
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -189,7 +189,7 @@ version 0.03
 
 =head1 DESCRIPTION
 
-This module provides one function B<setup_symlink> to setup symlinks.
+This module provides one function B<setup_symlink>.
 
 This module is part of the Setup modules family.
 
